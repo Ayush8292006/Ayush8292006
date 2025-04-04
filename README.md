@@ -1,3 +1,4 @@
+![WhatsApp Image 2025-04-05 at 02 11 09_e7f700ea](https://github.com/user-attachments/assets/ddf7e622-1864-4096-800e-76df937da65c)
 
 <h1 align="center">Hi 👋, I'm Ayush Kumar</h1>
 <h3 align="center">A passionate frontend developer, Software Engineer from India</h3>
