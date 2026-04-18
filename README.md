@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Ayush Kumar | Full Stack Developer Portfolio</title>
-  <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Ayush Kumar · MERN Stack · GitHub Profile</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- AOS Library for scroll animations -->
+  <!-- AOS CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     * {
@@ -17,506 +17,502 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: #0a0a0f;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #0d0f14;
       color: #eef2ff;
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
 
-    /* animated gradient background */
-    .animated-bg {
+    /* dynamic gradient orb background */
+    .bg-orb {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -2;
-      background: radial-gradient(circle at 20% 30%, #0a0f1f, #03050b);
+      background: radial-gradient(circle at 30% 10%, #0a0c15, #010101);
     }
 
-    .animated-bg::before {
-      content: "";
+    .bg-orb::after {
+      content: '';
       position: absolute;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
-      background: conic-gradient(from 0deg, #ff4d8c, #7a2be0, #2b9eff, #ff4d8c);
-      animation: rotateBg 20s linear infinite;
-      opacity: 0.12;
-      filter: blur(70px);
-      z-index: -1;
-    }
-
-    @keyframes rotateBg {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* custom cursor glow */
-    .cursor-glow {
-      position: fixed;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255,77,140,0.2) 0%, rgba(122,43,224,0) 70%);
-      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 80%, rgba(255, 80, 140, 0.15), transparent 60%);
       pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-      transition: transform 0.05s linear;
     }
 
-    /* container */
-    .container {
+    .noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    /* main container with max-width like github readme but modern */
+    .github-container {
       max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
+      margin: 2rem auto;
+      padding: 0 1.8rem;
       position: relative;
       z-index: 2;
     }
 
-    /* banner section (hero) */
-    .hero {
+    /* animated banner card (profile header) */
+    .banner-card {
+      background: rgba(18, 22, 35, 0.7);
+      backdrop-filter: blur(16px);
+      border-radius: 2.5rem;
+      padding: 2rem 2rem 2rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 110, 199, 0.25);
+      box-shadow: 0 25px 35px -18px rgba(0, 0, 0, 0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      text-align: center;
+    }
+
+    .banner-card:hover {
+      border-color: rgba(255, 110, 199, 0.6);
+      box-shadow: 0 30px 40px -18px rgba(255, 110, 199, 0.25);
+    }
+
+    .avatar-wrapper {
+      display: inline-block;
+      position: relative;
+    }
+
+    .avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #ff6ec7, #c147e9);
+      padding: 3px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 2rem 0 3rem;
-      border-radius: 48px;
-      background: rgba(15, 20, 30, 0.55);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5);
-      margin-bottom: 3rem;
+      margin: 0 auto 1rem;
     }
 
-    .banner-img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
+    .avatar img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border: 3px solid #ff6ec7;
-      box-shadow: 0 0 25px rgba(255,110,199,0.5);
-      transition: transform 0.3s ease;
-      margin-top: 1rem;
+      border-radius: 50%;
+      background: #0f111a;
     }
 
-    .banner-img:hover {
-      transform: scale(1.03);
-    }
-
-    h1 {
-      font-size: 3.8rem;
+    .glow-text {
+      font-size: 3rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #FFFFFF, #ffb3d9, #c084fc);
+      background: linear-gradient(120deg, #FFFFFF, #ffb8da, #d9a7ff);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      margin: 0.5rem 0 0.2rem;
       letter-spacing: -0.02em;
     }
 
-    .typed-wrapper {
-      height: 70px;
-      margin: 0.5rem 0;
-    }
-
-    .subtitle {
-      font-size: 1.6rem;
+    .typing-area {
+      min-height: 80px;
+      font-size: 1.5rem;
       font-weight: 500;
-      color: #cbd5e6;
+      color: #cbd5ff;
+      margin: 0.7rem 0;
     }
 
-    .social-links {
+    .badge-group {
       display: flex;
-      gap: 1.5rem;
-      margin-top: 1.8rem;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
     }
 
-    .social-icon {
-      background: rgba(255,255,255,0.05);
-      padding: 0.8rem 1.8rem;
+    .badge {
+      background: rgba(255, 110, 199, 0.12);
+      padding: 0.4rem 1.2rem;
       border-radius: 60px;
-      text-decoration: none;
-      color: #f0f3fa;
-      font-weight: 600;
+      font-size: 0.85rem;
+      font-weight: 500;
       backdrop-filter: blur(4px);
-      transition: all 0.25s;
-      border: 1px solid rgba(255,110,199,0.3);
+      border: 1px solid rgba(255, 110, 199, 0.3);
+    }
+
+    .badge i {
+      margin-right: 6px;
+      color: #ff9fcf;
+    }
+
+    /* social row */
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.8rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .social-btn {
+      background: rgba(30, 34, 48, 0.8);
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      text-decoration: none;
+      color: #f0f3ff;
+      font-weight: 600;
+      transition: 0.2s;
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      font-size: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .social-icon i {
-      font-size: 1.3rem;
+    .social-btn i {
+      font-size: 1.2rem;
       color: #ff6ec7;
     }
 
-    .social-icon:hover {
+    .social-btn:hover {
       background: #ff6ec7;
-      color: #0a0a0f;
-      border-color: #ff6ec7;
+      color: #0b0e16;
       transform: translateY(-3px);
-      box-shadow: 0 10px 20px -5px rgba(255,110,199,0.4);
+      border-color: #ff6ec7;
     }
 
-    .social-icon:hover i {
-      color: #0a0a0f;
+    .social-btn:hover i {
+      color: #0b0e16;
     }
 
-    /* section cards */
-    .section-card {
-      background: rgba(12, 16, 28, 0.7);
+    /* card style for sections (GitHub like but premium) */
+    .repo-card {
+      background: rgba(12, 16, 26, 0.65);
       backdrop-filter: blur(12px);
-      border-radius: 2rem;
-      padding: 2rem 2rem;
-      margin-bottom: 2.5rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: all 0.3s;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border-radius: 1.8rem;
+      padding: 1.6rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.2s;
     }
 
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
+    .section-header {
       display: flex;
       align-items: center;
       gap: 12px;
+      margin-bottom: 1.5rem;
+      font-size: 1.7rem;
+      font-weight: 700;
       border-left: 4px solid #ff6ec7;
       padding-left: 1rem;
     }
 
-    .section-title i {
+    .section-header i {
       color: #ff6ec7;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
 
-    .tech-icons {
+    .tech-stack {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
-      margin-top: 1rem;
+      margin: 1rem 0;
     }
 
-    .tech-icons img {
-      width: 55px;
-      transition: transform 0.2s, filter 0.2s;
+    .tech-icon {
+      background: #181e2c;
+      border-radius: 16px;
+      padding: 8px 12px;
+      transition: all 0.2s;
     }
 
-    .tech-icons img:hover {
-      transform: translateY(-8px);
-      filter: drop-shadow(0 0 8px #ff6ec7);
+    .tech-icon img {
+      width: 48px;
+      filter: drop-shadow(0 0 3px rgba(255,110,199,0.4));
+    }
+
+    .tech-icon:hover {
+      transform: translateY(-5px);
     }
 
     /* projects grid */
-    .projects-grid {
+    .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.8rem;
-      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.5rem;
+      margin-top: 0.5rem;
     }
 
-    .project-card {
-      background: rgba(0,0,0,0.45);
+    .project-item {
+      background: rgba(0, 0, 0, 0.45);
       border-radius: 1.5rem;
-      padding: 1.5rem;
-      border: 1px solid rgba(255,110,199,0.2);
-      transition: all 0.3s;
+      padding: 1.3rem 1.5rem;
+      border: 1px solid rgba(255, 110, 199, 0.2);
+      transition: all 0.25s;
     }
 
-    .project-card:hover {
-      transform: translateY(-8px);
+    .project-item:hover {
       border-color: #ff6ec7;
-      box-shadow: 0 20px 25px -12px rgba(255,110,199,0.3);
+      transform: translateY(-5px);
       background: rgba(20, 25, 45, 0.8);
     }
 
-    .project-title {
-      font-size: 1.6rem;
+    .project-name {
+      font-size: 1.4rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 8px;
     }
 
     .project-desc {
-      color: #b9c3dd;
-      margin: 0.8rem 0;
-      line-height: 1.5;
+      color: #b4c0e0;
+      margin: 12px 0;
+      line-height: 1.45;
     }
 
-    .project-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-link {
-      background: none;
-      border: 1px solid #ff6ec7;
-      padding: 0.4rem 1rem;
-      border-radius: 40px;
-      color: #ffb3d9;
-      text-decoration: none;
+    .project-links a {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-top: 0.5rem;
       font-size: 0.85rem;
-      font-weight: 500;
+      background: rgba(255,110,199,0.1);
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      text-decoration: none;
+      color: #ffc0e0;
       transition: 0.2s;
     }
 
-    .btn-link:hover {
+    .project-links a:hover {
       background: #ff6ec7;
-      color: #0a0a0f;
+      color: #0a0c16;
     }
 
-    .achievements-list {
+    .achievement-list {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
       list-style: none;
-      margin-top: 0.5rem;
     }
 
-    .achievements-list li {
-      background: rgba(255,110,199,0.12);
-      padding: 0.5rem 1rem;
-      border-radius: 40px;
+    .achievement-list li {
+      background: rgba(255, 110, 199, 0.08);
+      padding: 0.55rem 1.3rem;
+      border-radius: 50px;
       font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .repo-stats {
       display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .achievements-list li i {
-      color: #ffb347;
-    }
-
-    hr {
-      border-color: rgba(255,110,199,0.2);
-      margin: 1rem 0;
+      gap: 1rem;
+      margin-top: 1rem;
+      color: #9aa4bf;
+      font-size: 0.8rem;
     }
 
     footer {
       text-align: center;
       padding: 2rem 0 1rem;
-      color: #8e9aaf;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      opacity: 0.7;
     }
 
-    @media (max-width: 680px) {
-      h1 {
-        font-size: 2.4rem;
+    @media (max-width: 700px) {
+      .github-container {
+        padding: 0 1rem;
       }
-      .subtitle {
-        font-size: 1.2rem;
+      .glow-text {
+        font-size: 2rem;
       }
-      .section-card {
-        padding: 1.5rem;
+      .typing-area {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
+<div class="bg-orb"></div>
+<div class="noise"></div>
 
-<div class="animated-bg"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
-
-<div class="container">
-  <!-- HERO / BANNER SECTION (attractive) -->
-  <div class="hero" data-aos="fade-up" data-aos-duration="800">
-    <!-- you can replace with actual image, but I'll use a modern avatar placeholder with gradient -->
-    <div style="position: relative;">
-      <img src="https://ui-avatars.com/api/?background=FF6EC7&color=fff&rounded=true&size=140&bold=true&name=Ayush+Kumar" alt="Ayush Kumar" class="banner-img" />
-      <div style="position: absolute; bottom: 5px; right: 5px; background: #0f0f1a; border-radius: 30px; padding: 4px 10px; font-size: 0.7rem; font-weight: bold; border:1px solid #ff6ec7;">✨ MERN</div>
+<div class="github-container">
+  <!-- MAIN BANNER (REPOSITORY FRONT PAGE) -->
+  <div class="banner-card" data-aos="fade-up" data-aos-duration="900">
+    <div class="avatar-wrapper">
+      <div class="avatar">
+        <!-- professional avatar with initials but looks clean -->
+        <img src="https://ui-avatars.com/api/?background=1a1e2c&color=ff6ec7&rounded=true&size=120&bold=true&fontsize=0.55&name=Ayush+Kumar" alt="Ayush Kumar">
+      </div>
     </div>
-    <h1>Ayush Kumar</h1>
-    <div class="typed-wrapper">
-      <div class="subtitle" id="typedLine">🚀 Full Stack Developer | MERN Stack</div>
+    <h1 class="glow-text">Ayush Kumar</h1>
+    <div class="typing-area" id="dynamicRole"></div>
+    <div class="badge-group">
+      <span class="badge"><i class="fab fa-react"></i> React.js</span>
+      <span class="badge"><i class="fab fa-node-js"></i> Node.js</span>
+      <span class="badge"><i class="fas fa-database"></i> MongoDB</span>
+      <span class="badge"><i class="fas fa-code-branch"></i> Express</span>
+      <span class="badge"><i class="fas fa-cloud"></i> MERN Expert</span>
     </div>
-    <div class="social-links">
-      <a href="https://linkedin.com/in/ayush-kumar-35499a32b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-      <a href="mailto:aksrivastav0825@gmail.com" class="social-icon"><i class="fas fa-envelope"></i> Email</a>
-      <a href="https://github.com/Ayush8292006" target="_blank" class="social-icon"><i class="fab fa-github"></i> GitHub</a>
+    <div class="social-row">
+      <a href="https://linkedin.com/in/ayush-kumar-35499a32b" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <a href="mailto:aksrivastav0825@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email</a>
+      <a href="https://github.com/Ayush8292006" target="_blank" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
     </div>
   </div>
 
-  <!-- About + Tech combined card -->
-  <div class="section-card" data-aos="fade-right" data-aos-duration="700">
-    <div class="section-title">
-      <i class="fas fa-code"></i> 
-      <span>About Me & Tech Arsenal</span>
+  <!-- ABOUT + TECH STACK (like a README intro) -->
+  <div class="repo-card" data-aos="fade-right" data-aos-duration="700">
+    <div class="section-header">
+      <i class="fas fa-user-astronaut"></i>
+      <span>About me</span>
     </div>
-    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
-      <div style="flex: 1.5;">
-        <p style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 1rem;">💻 <strong>Full Stack Developer</strong> (React, Node.js, MongoDB)<br>
-        ⚡ Built real-time & scalable applications · 🧠 Solved 200+ DSA problems (C++)<br>
-        🚀 Focused on production-level projects · 🎯 Open to Internship opportunities</p>
-        <div style="display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.8rem;">
-          <span style="background:#ff6ec720; padding:0.3rem 1rem; border-radius:30px;"><i class="fas fa-database"></i> MongoDB</span>
-          <span style="background:#ff6ec720; padding:0.3rem 1rem; border-radius:30px;"><i class="fab fa-react"></i> React</span>
-          <span style="background:#ff6ec720; padding:0.3rem 1rem; border-radius:30px;"><i class="fab fa-node-js"></i> Node.js</span>
-          <span style="background:#ff6ec720; padding:0.3rem 1rem; border-radius:30px;"><i class="fas fa-cloud"></i> Stripe</span>
-        </div>
-      </div>
-      <div style="flex: 2;">
-        <div class="tech-icons">
-          <img src="https://skillicons.dev/icons?i=html,css,js,react,nodejs,express,mongodb,cpp,python,git,github,vercel,tailwind" alt="tech stack" style="max-width:100%;">
-        </div>
-      </div>
+    <p style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 1rem;">💻 Full Stack Developer specializing in <strong>MERN stack</strong> with a passion for building real-time, scalable web apps. Solved <strong>200+ DSA problems</strong> (C++) and love crafting production-grade solutions. 🚀 Open to internships & collaborations.</p>
+    <div class="tech-stack">
+      <!-- using skill icons with professional look -->
+      <div class="tech-icon"><img src="https://skillicons.dev/icons?i=js" alt="JS"></div>
+      <div class="tech-icon"><img src="https://skillicons.dev/icons?i=react" alt="React"></div>
+      <div class="tech-icon"><img src="https://skillicons.dev/icons?i=nodejs" alt="Node"></div>
+      <div class="tech-icon"><img src="https://skillicons.dev/icons?i=express" alt="Express"></div>
+      <div class="tech-icon"><img src="https://skillicons.dev/icons?i=mongodb" alt="MongoDB"></div>
+      <div class="tech-icon"><img src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind"></div>
+      <div class="tech-icon"><img src="https://skillicons.dev/icons?i=git" alt="Git"></div>
+      <div class="tech-icon"><img src="https://skillicons.dev/icons?i=cpp" alt="C++"></div>
     </div>
   </div>
 
-  <!-- Featured Projects -->
-  <div class="section-card" data-aos="fade-up" data-aos-duration="700">
-    <div class="section-title">
-      <i class="fas fa-rocket"></i>
-      <span>🔥 Featured Projects</span>
+  <!-- FEATURED PROJECTS (SHOWCASING PINNED REPOS) -->
+  <div class="repo-card" data-aos="fade-up" data-aos-duration="800">
+    <div class="section-header">
+      <i class="fas fa-star-of-life"></i>
+      <span>📌 Pinned Projects · Real-world Impact</span>
     </div>
-    <div class="projects-grid">
+    <div class="project-grid">
       <!-- CineBook -->
-      <div class="project-card">
-        <div class="project-title"><i class="fas fa-film" style="color:#ff6ec7;"></i> CineBook</div>
-        <div class="project-desc">Real-time seat booking with locking system + Stripe payments + email tickets. Production ready full-stack MERN app.</div>
+      <div class="project-item">
+        <div class="project-name"><i class="fas fa-ticket-alt" style="color:#ff6ec7;"></i> CineBook</div>
+        <div class="project-desc">Real-time seat booking with locking system, Stripe payments, and email tickets. High concurrency handling.</div>
         <div class="project-links">
-          <a href="https://cinebook-omega.vercel.app/" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-          <a href="https://github.com/Ayush8292006/CineBook-TicketBooking" target="_blank" class="btn-link"><i class="fab fa-github"></i> Code</a>
+          <a href="https://cinebook-omega.vercel.app/" target="_blank"><i class="fas fa-globe"></i> Live</a>
+          <a href="https://github.com/Ayush8292006/CineBook-TicketBooking" target="_blank"><i class="fab fa-github"></i> Repository</a>
         </div>
+        <div class="repo-stats"><span><i class="fas fa-code-branch"></i> MERN + Stripe</span> <span><i class="fas fa-users"></i> Real-time</span></div>
       </div>
       <!-- AI Assistant -->
-      <div class="project-card">
-        <div class="project-title"><i class="fas fa-microphone-alt" style="color:#ff6ec7;"></i> AI Assistant</div>
-        <div class="project-desc">Voice + text AI assistant with authentication & chat history, powered by modern API integrations.</div>
+      <div class="project-item">
+        <div class="project-name"><i class="fas fa-microphone-alt" style="color:#ff6ec7;"></i> AI Assistant</div>
+        <div class="project-desc">Voice & text AI assistant with JWT authentication, chat history, and sleek UI.</div>
         <div class="project-links">
-          <a href="https://virtual-chatbot-sandy.vercel.app" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-          <a href="https://github.com/Ayush8292006/Virtual-Chatbot" target="_blank" class="btn-link"><i class="fab fa-github"></i> Code</a>
+          <a href="https://virtual-chatbot-sandy.vercel.app" target="_blank"><i class="fas fa-globe"></i> Live</a>
+          <a href="https://github.com/Ayush8292006/Virtual-Chatbot" target="_blank"><i class="fab fa-github"></i> Repository</a>
         </div>
+        <div class="repo-stats"><span><i class="fas fa-robot"></i> OpenAI like</span> <span><i class="fas fa-database"></i> MongoDB</span></div>
       </div>
-      <!-- ProjectFlow -->
-      <div class="project-card">
-        <div class="project-title"><i class="fas fa-tasks" style="color:#ff6ec7;"></i> ProjectFlow</div>
-        <div class="project-desc">Kanban board with drag & drop + optimized performance for 500+ tasks. Smooth UX and realtime updates.</div>
+      <!-- ProjectFlow Kanban -->
+      <div class="project-item">
+        <div class="project-name"><i class="fas fa-tasks" style="color:#ff6ec7;"></i> ProjectFlow</div>
+        <div class="project-desc">Kanban board with drag & drop, optimized for 500+ tasks, smooth drag-and-drop experience.</div>
         <div class="project-links">
-          <a href="https://kanban-timeline-website.vercel.app/" target="_blank" class="btn-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-          <a href="https://github.com/Ayush8292006/kanban-timeline-website" target="_blank" class="btn-link"><i class="fab fa-github"></i> Code</a>
+          <a href="https://kanban-timeline-website.vercel.app/" target="_blank"><i class="fas fa-globe"></i> Live</a>
+          <a href="https://github.com/Ayush8292006/kanban-timeline-website" target="_blank"><i class="fab fa-github"></i> Repository</a>
         </div>
+        <div class="repo-stats"><span><i class="fas fa-chart-line"></i> Performance</span> <span><i class="fas fa-drag-drop"></i> DnD</span></div>
       </div>
     </div>
   </div>
 
-  <!-- Achievements + Stats -->
-  <div class="section-card" data-aos="zoom-in" data-aos-duration="600">
-    <div class="section-title">
-      <i class="fas fa-trophy"></i>
-      <span>🏆 Achievements & Milestones</span>
+  <!-- ACHIEVEMENTS & SKILL HIGHLIGHTS -->
+  <div class="repo-card" data-aos="zoom-in" data-aos-duration="700">
+    <div class="section-header">
+      <i class="fas fa-medal"></i>
+      <span>🏅 Achievements & Developer Milestones</span>
     </div>
-    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between;">
-      <ul class="achievements-list" style="flex:1;">
-        <li><i class="fas fa-brain"></i> Solved 200+ DSA problems (C++)</li>
-        <li><i class="fas fa-chart-line"></i> Built real-time applications with WebSockets</li>
-        <li><i class="fas fa-credit-card"></i> Implemented Stripe payment system</li>
-        <li><i class="fas fa-tachometer-alt"></i> Optimized apps for 500+ concurrent users</li>
-        <li><i class="fas fa-lock"></i> Strong in authentication (JWT, OAuth) & APIs</li>
-      </ul>
-      <div style="flex:0.5; text-align: center; background: rgba(255,110,199,0.1); border-radius: 30px; padding: 1rem;">
-        <i class="fas fa-code-branch" style="font-size: 2rem; color:#ff6ec7;"></i>
-        <p style="font-weight: bold; margin-top: 0.5rem;">20+ <br> Projects</p>
-      </div>
+    <ul class="achievement-list">
+      <li><i class="fas fa-check-circle" style="color:#ff9fcf;"></i> 200+ DSA problems (C++)</li>
+      <li><i class="fas fa-bolt"></i> Real-time apps with socket.io & concurrency</li>
+      <li><i class="fas fa-credit-card"></i> Integrated Stripe payment gateway</li>
+      <li><i class="fas fa-chart-simple"></i> Optimized apps for 500+ users/tasks</li>
+      <li><i class="fas fa-shield-alt"></i> JWT, OAuth, authentication expert</li>
+      <li><i class="fas fa-rocket"></i> Deployed full-stack apps on Vercel + Render</li>
+    </ul>
+    <div style="margin-top: 1.2rem; background: rgba(255,110,199,0.1); border-radius: 28px; padding: 0.8rem 1rem; text-align: center;">
+      <i class="fas fa-code"></i> "Building scalable apps that solve real-world problems — always exploring new tech."
     </div>
   </div>
 
-  <!-- Connect & Quote -->
-  <div class="section-card" data-aos="fade-left" data-aos-duration="600" style="text-align: center;">
-    <div class="section-title" style="justify-content: center; border-left: none;">
-      <i class="fas fa-globe"></i> <span>Let's Connect</span>
+  <!-- GITHUB STATS & OPEN FOR INTERNSHIP BANNER -->
+  <div class="repo-card" data-aos="fade-left" data-aos-duration="700" style="text-align: center;">
+    <div class="section-header" style="justify-content: center; border-left: none;">
+      <i class="fas fa-hand-peace"></i>
+      <span>🤝 Open for Opportunities</span>
     </div>
-    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin: 1rem 0;">
-      <a href="https://linkedin.com/in/ayush-kumar-35499a32b" target="_blank" style="background:#ff6ec722; padding: 0.7rem 2rem; border-radius: 60px; text-decoration: none; color: white; font-weight:600;"><i class="fab fa-linkedin"></i> LinkedIn</a>
-      <a href="mailto:aksrivastav0825@gmail.com" style="background:#ff6ec722; padding: 0.7rem 2rem; border-radius: 60px; text-decoration: none; color: white; font-weight:600;"><i class="fas fa-envelope"></i> aksrivastav0825@gmail.com</a>
-      <a href="https://github.com/Ayush8292006" target="_blank" style="background:#ff6ec722; padding: 0.7rem 2rem; border-radius: 60px; text-decoration: none; color: white; font-weight:600;"><i class="fab fa-github"></i> GitHub</a>
+    <p style="margin-bottom: 1rem;">I'm actively looking for <strong>internships / full‑time roles</strong> as a Full Stack Developer (MERN). Let's collaborate and build something impactful.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <span class="badge" style="background:#ff6ec7; color:#0a0c16;"><i class="fas fa-envelope-open-text"></i> aksrivastav0825@gmail.com</span>
+      <span class="badge"><i class="fab fa-github"></i> @Ayush8292006</span>
     </div>
-    <hr>
-    <p style="font-size: 1.3rem; font-weight: 500; letter-spacing: 1px;">⚡ "Code. Build. Scale."</p>
+    <hr style="margin: 1.2rem 0; border-color: #ff6ec730;">
+    <div style="display: flex; justify-content: center; gap: 1.2rem; font-size: 0.9rem;">
+      <span><i class="fas fa-map-marker-alt"></i> Remote / India</span>
+      <span><i class="fas fa-clock"></i> Immediate joiner</span>
+    </div>
   </div>
-
+  
   <footer>
-    <i class="fas fa-crown" style="color:#ff6ec7;"></i> Ayush Kumar — Full Stack Developer | MERN expert — constantly building the future.
+    <i class="fas fa-code"></i> with ⚡ by Ayush Kumar — MERN Full Stack Developer — “Code. Build. Scale.”
   </footer>
 </div>
 
-<!-- Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init({
-    duration: 800,
-    once: true,
-    offset: 100,
-  });
+  AOS.init({ duration: 700, once: true, offset: 20 });
 
-  // Dynamic typing animation for subtitle line (professional animated text)
-  const typedElement = document.getElementById('typedLine');
-  const phrases = [
+  // professional typing animation for dynamic role line
+  const roles = [
     "🚀 Full Stack Developer | MERN Stack",
-    "💻 React • Node.js • MongoDB",
-    "⚡ Real-time Apps & Scalable Systems",
-    "🎯 Open to Internships & Opportunities"
+    "💻 Building real-time web apps",
+    "⚡ 200+ DSA problems (C++)",
+    "🎯 Open for Internships"
   ];
-  let phraseIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  let currentText = '';
+  let roleIndex = 0;
+  let charPos = 0;
+  let isDeletingFlag = false;
+  let currentRoleSpan = document.getElementById("dynamicRole");
 
-  function typeEffect() {
-    const fullText = phrases[phraseIndex];
-    if (isDeleting) {
-      currentText = fullText.substring(0, charIndex - 1);
-      charIndex--;
+  function animateTyping() {
+    const full = roles[roleIndex];
+    if (isDeletingFlag) {
+      currentRoleSpan.textContent = full.substring(0, charPos - 1);
+      charPos--;
     } else {
-      currentText = fullText.substring(0, charIndex + 1);
-      charIndex++;
+      currentRoleSpan.textContent = full.substring(0, charPos + 1);
+      charPos++;
     }
-    typedElement.textContent = currentText;
 
-    if (!isDeleting && charIndex === fullText.length) {
-      isDeleting = true;
-      setTimeout(typeEffect, 2000);
+    if (!isDeletingFlag && charPos === full.length) {
+      isDeletingFlag = true;
+      setTimeout(animateTyping, 1800);
       return;
     }
-    if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-      setTimeout(typeEffect, 400);
+    if (isDeletingFlag && charPos === 0) {
+      isDeletingFlag = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+      setTimeout(animateTyping, 400);
       return;
     }
-    const speed = isDeleting ? 60 : 100;
-    setTimeout(typeEffect, speed);
+    const speed = isDeletingFlag ? 50 : 90;
+    setTimeout(animateTyping, speed);
   }
+  animateTyping();
 
-  typeEffect();
-
-  // cursor glow effect
-  const cursorGlow = document.getElementById('cursorGlow');
-  document.addEventListener('mousemove', (e) => {
-    cursorGlow.style.left = e.clientX + 'px';
-    cursorGlow.style.top = e.clientY + 'px';
-  });
-
-  // add smooth scroll to anchors if any
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
+  // add glow on card hover effect (extra micro-interaction)
+  const cards = document.querySelectorAll('.repo-card, .banner-card');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'all 0.25s ease';
     });
   });
 </script>
